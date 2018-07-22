@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27428.2005
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PDAImport", "WindowsFormsApplication1\PDAImport.csproj", "{9EA084A6-4CCB-45AA-9262-13C1C2564E5B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PDAImport", "PDAImport\PDAImport.csproj", "{9EA084A6-4CCB-45AA-9262-13C1C2564E5B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,8 +15,8 @@ Global
 		Release|x64 = Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{9EA084A6-4CCB-45AA-9262-13C1C2564E5B}.Debug 64 Bits|Any CPU.ActiveCfg = Debug 64 Bits|x64
-		{9EA084A6-4CCB-45AA-9262-13C1C2564E5B}.Debug 64 Bits|Any CPU.Build.0 = Debug 64 Bits|x64
+		{9EA084A6-4CCB-45AA-9262-13C1C2564E5B}.Debug 64 Bits|Any CPU.ActiveCfg = Debug 64 Bits|Any CPU
+		{9EA084A6-4CCB-45AA-9262-13C1C2564E5B}.Debug 64 Bits|Any CPU.Build.0 = Debug 64 Bits|Any CPU
 		{9EA084A6-4CCB-45AA-9262-13C1C2564E5B}.Debug 64 Bits|x64.ActiveCfg = Debug 64 Bits|x64
 		{9EA084A6-4CCB-45AA-9262-13C1C2564E5B}.Debug 64 Bits|x64.Build.0 = Debug 64 Bits|x64
 		{9EA084A6-4CCB-45AA-9262-13C1C2564E5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -32,6 +32,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {ECDE82B8-8F82-45CA-AD38-6CF87C4E4EB0}
+		SolutionGuid = {FDD3C55D-76F2-4B9F-BA88-13528CB61F30}
 	EndGlobalSection
 EndGlobal
