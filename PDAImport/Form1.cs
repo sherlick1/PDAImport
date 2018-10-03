@@ -24,37 +24,98 @@ namespace PDAImport
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void startButton_Click(object sender, EventArgs e)
         {
             CreateOrder createOrder = new CreateOrder();
             WireEventHandlers(createOrder);
 
             string message;
             string caption;
-            string sLoc = string.Empty; 
             MessageBoxButtons buttons = MessageBoxButtons.OK;
             DialogResult result;
 
             if (TorButton.Checked)
-                sLoc = "TOR";
+            {
+                Program.sLoc = "TOR";
+                Program.torbackupPath = System.Configuration.ConfigurationManager.AppSettings["tor_backup_path"];
+                Program.iLoc = Program.iLoc ^ 1;
+            }
             else if (TorandMtlButton.Checked)
-                sLoc = "TORMTL";
-            else if (MtlButton.Checked)
-                sLoc = "MTL";
-            else if (VanButton.Checked)
-                sLoc = "VAN";
-            else if (CalButton.Checked)
-                sLoc = "CAL";
-            else if (VanandCalButton.Checked)
-                sLoc = "VANCAL";
+            {
+                Program.sLoc = "TORMTL";
+                Program.torbackupPath = System.Configuration.ConfigurationManager.AppSettings["tor_backup_path"];
+                Program.iLoc = Program.iLoc ^ 1;
+                Program.iLoc = Program.iLoc ^ 2;
 
-            if (createOrder.PerformPDAImport(sLoc))
+            }
+            else if (MtlButton.Checked)
+            {
+                Program.sLoc = "MTL";
+                Program.torbackupPath = System.Configuration.ConfigurationManager.AppSettings["tor_backup_path"];
+                Program.iLoc = Program.iLoc ^ 2;
+            }
+            else if (VanButton.Checked)
+            {
+                Program.sLoc = "VAN";
+                Program.vanbackupPath = System.Configuration.ConfigurationManager.AppSettings["van_backup_path"];
+                Program.iLoc = Program.iLoc ^ 4;
+            }
+            else if (CalButton.Checked)
+            {
+                Program.sLoc = "CAL";
+                Program.vanbackupPath = System.Configuration.ConfigurationManager.AppSettings["van_backup_path"];
+                Program.iLoc = Program.iLoc ^ 8;
+            }
+            else if (VanandCalButton.Checked)
+            {
+                Program.sLoc = "VANCAL";
+                Program.vanbackupPath = System.Configuration.ConfigurationManager.AppSettings["van_backup_path"];
+                Program.iLoc = Program.iLoc ^ 4;
+                Program.iLoc = Program.iLoc ^ 8;
+            }
+
+            if (printToPrinter.Checked)
+                Program.output = "printer";
+            else
+                Program.output = "preview";
+
+            if (emailSalesRep.Checked)
+                Program.emailSalesRep = true;
+            else
+                Program.emailSalesRep = false;
+
+            if (createOrder.PerformPDAImport())
             {
                 message = "Import Finished Successfully.";
             }
             else
             {
                 message = "Import had errors!";
+            }
+
+            if (TorButton.Checked)
+            {
+                Utilities.CopyFile(Program.torbackupPath, Program.txtOutputFile, System.Configuration.ConfigurationManager.AppSettings["tor_error_path"], System.Configuration.ConfigurationManager.AppSettings["tor_email_bad_data"], System.Configuration.ConfigurationManager.AppSettings["tor_email_bad_data_cc"]);
+            }
+            else if (TorandMtlButton.Checked)
+            {
+                Utilities.CopyFile(Program.torbackupPath, Program.txtOutputFile, System.Configuration.ConfigurationManager.AppSettings["tor_error_path"], System.Configuration.ConfigurationManager.AppSettings["tor_email_bad_data"], System.Configuration.ConfigurationManager.AppSettings["tor_email_bad_data_cc"]);
+            }
+            else if (MtlButton.Checked)
+            {
+                Utilities.CopyFile(Program.torbackupPath, Program.txtOutputFile, System.Configuration.ConfigurationManager.AppSettings["tor_error_path"], System.Configuration.ConfigurationManager.AppSettings["tor_email_bad_data"], System.Configuration.ConfigurationManager.AppSettings["tor_email_bad_data_cc"]);
+            }
+            else if (VanButton.Checked)
+            {
+                Utilities.CopyFile(Program.vanbackupPath, Program.txtOutputFile, System.Configuration.ConfigurationManager.AppSettings["van_error_path"], System.Configuration.ConfigurationManager.AppSettings["van_email_bad_data"], System.Configuration.ConfigurationManager.AppSettings["van_email_bad_data_cc"]);
+            }
+            else if (CalButton.Checked)
+            {
+                Utilities.CopyFile(Program.vanbackupPath, Program.txtOutputFile, System.Configuration.ConfigurationManager.AppSettings["van_error_path"], System.Configuration.ConfigurationManager.AppSettings["van_email_bad_data"], System.Configuration.ConfigurationManager.AppSettings["van_email_bad_data_cc"]);
+            }
+            else if (VanandCalButton.Checked)
+            {
+                Utilities.CopyFile(Program.vanbackupPath, Program.txtOutputFile, System.Configuration.ConfigurationManager.AppSettings["van_error_path"], System.Configuration.ConfigurationManager.AppSettings["van_email_bad_data"], System.Configuration.ConfigurationManager.AppSettings["van_email_bad_data_cc"]);
             }
 
             caption = "Status of Import";
@@ -87,11 +148,29 @@ namespace PDAImport
             switch (Program.sLoc)
             {
                 case "TOR":
+                    TorButton.Checked = true;
+                    break;
+                case "MTL":
+                    MtlButton.Checked = true;
+                    break;
+                case "TORMTL":
                     TorandMtlButton.Checked = true;
                     break;
                 case "VAN":
                     VanButton.Checked = true;
                     break;
+                case "CAL":
+                    CalButton.Checked = true;
+                    break;
+                case "VANCAL":
+                    VanandCalButton.Checked = true;
+                    break;
+            }
+
+            if (Program.sPrd.ToUpper() == "PRD")
+            {
+                printToPrinter.Checked = true;
+                emailSalesRep.Checked = true;
             }
 
             StatusLabel.Text = String.Empty;

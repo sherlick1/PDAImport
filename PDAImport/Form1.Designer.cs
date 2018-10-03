@@ -40,6 +40,8 @@
             this.Results = new System.Windows.Forms.Label();
             this.CalButton = new System.Windows.Forms.RadioButton();
             this.VanandCalButton = new System.Windows.Forms.RadioButton();
+            this.printToPrinter = new System.Windows.Forms.CheckBox();
+            this.emailSalesRep = new System.Windows.Forms.CheckBox();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -51,7 +53,7 @@
             this.StartButton.TabIndex = 0;
             this.StartButton.Text = "Start";
             this.StartButton.UseVisualStyleBackColor = true;
-            this.StartButton.Click += new System.EventHandler(this.button1_Click);
+            this.StartButton.Click += new System.EventHandler(this.startButton_Click);
             // 
             // label1
             // 
@@ -59,9 +61,9 @@
             this.label1.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(39, 34);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 14);
+            this.label1.Size = new System.Drawing.Size(109, 14);
             this.label1.TabIndex = 1;
-            this.label1.Text = "label1";
+            this.label1.Text = "Locations to Process";
             // 
             // TorButton
             // 
@@ -165,11 +167,35 @@
             this.VanandCalButton.Text = "Vancouver and Calgary Shipments";
             this.VanandCalButton.UseVisualStyleBackColor = true;
             // 
+            // printToPrinter
+            // 
+            this.printToPrinter.AutoSize = true;
+            this.printToPrinter.Location = new System.Drawing.Point(271, 158);
+            this.printToPrinter.Name = "printToPrinter";
+            this.printToPrinter.Size = new System.Drawing.Size(92, 17);
+            this.printToPrinter.TabIndex = 12;
+            this.printToPrinter.Text = "Print to Printer";
+            this.printToPrinter.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.printToPrinter.UseVisualStyleBackColor = true;
+            // 
+            // emailSalesRep
+            // 
+            this.emailSalesRep.AutoSize = true;
+            this.emailSalesRep.Location = new System.Drawing.Point(271, 181);
+            this.emailSalesRep.Name = "emailSalesRep";
+            this.emailSalesRep.Size = new System.Drawing.Size(102, 17);
+            this.emailSalesRep.TabIndex = 13;
+            this.emailSalesRep.Text = "email Sales Rep";
+            this.emailSalesRep.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.emailSalesRep.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(565, 360);
+            this.Controls.Add(this.emailSalesRep);
+            this.Controls.Add(this.printToPrinter);
             this.Controls.Add(this.VanandCalButton);
             this.Controls.Add(this.CalButton);
             this.Controls.Add(this.Results);
@@ -205,6 +231,8 @@
         private System.Windows.Forms.Label Results;
         private System.Windows.Forms.RadioButton CalButton;
         private System.Windows.Forms.RadioButton VanandCalButton;
+        private System.Windows.Forms.CheckBox printToPrinter;
+        private System.Windows.Forms.CheckBox emailSalesRep;
     }
 
 }

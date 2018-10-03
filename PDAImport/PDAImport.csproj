@@ -104,7 +104,8 @@
       <HintPath>..\..\InventoryAdjustmentReport\obj\Debug\Interop.CDO.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
-    <Reference Include="Microsoft.Office.Interop.Outlook, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.Office.Interop.Outlook">
+      <HintPath>C:\Program Files (x86)\Microsoft Visual Studio\Shared\Visual Studio Tools for Office\PIA\Office15\Microsoft.Office.Interop.Outlook.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="System" />
@@ -120,11 +121,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ItemsShipped.cs" />
     <Compile Include="CreateOrder.cs" />
     <Compile Include="email.cs" />
     <Compile Include="CsvParser.cs" />
     <Compile Include="LogWriter.cs" />
     <Compile Include="MyEvents.cs" />
+    <Compile Include="ProcessFile.cs" />
+    <Compile Include="Printing.cs" />
+    <Compile Include="STMPEmailClass.cs" />
     <Compile Include="Utilities.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
